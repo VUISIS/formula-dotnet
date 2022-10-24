@@ -157,9 +157,10 @@
             //// Step 2. Expand heads / bodies.
             Term type;
             TypeEnvironment bodyEnv;
+            RuleLinter.SymTable = TypeEnvironment.Index.SymbolTable;
             foreach (var b in bodies)
             {
-                /*List<string> varNames = null;
+                List<string> varNames = null;
                 if(!RuleLinter.ValidateBodyQualifiedIds(b, out varNames))
                 {
                     var flag = new Flag(
@@ -169,7 +170,7 @@
                     Constants.NoBindingTypeError.Code);
                     flags.Add(flag);
                     return RecordValidationResult(false);
-                }*/
+                }
 
                 bodyEnv = TypeEnvironment.AddChild(b);
                 var cs = new ConstraintSystem(Index, b, bodyEnv, myComprData);

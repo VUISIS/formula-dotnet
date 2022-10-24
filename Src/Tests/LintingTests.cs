@@ -34,6 +34,27 @@ namespace Tests
         }
 
         [Fact]
+        public void TestRuleLinterArmNoMemLoading()
+        {
+            _ciFixture.RunCommand("load " + Path.GetFullPath("../../../../../models/arm_no_mem.4ml"), "LintingTests: Load command for arm_no_mem.4ml failed.");
+            Assert.True(_ciFixture.GetLoadResult(), "LintingTests: Finding errors in arm_no_mem.4ml failed.");
+        }
+
+        [Fact]
+        public void TestRuleLinterArmLoading()
+        {
+            _ciFixture.RunCommand("load " + Path.GetFullPath("../../../../../models/arm.4ml"), "LintingTests: Load command for arm.4ml failed.");
+            Assert.True(_ciFixture.GetLoadResult(), "LintingTests: Finding errors in arm.4ml failed.");
+        }
+
+        [Fact]
+        public void TestRuleLinterGraphsLoading()
+        {
+            _ciFixture.RunCommand("load " + Path.GetFullPath("../../../../../models/graphs.4ml"), "LintingTests: Load command for graphs.4ml failed.");
+            Assert.True(_ciFixture.GetLoadResult(), "LintingTests: Finding errors in graphs.4ml failed.");
+        }
+
+        [Fact]
         public void TestValidRuleLinterValidateBodyQualifiedIds()
         {
             var body = Factory.Instance.MkBody();
